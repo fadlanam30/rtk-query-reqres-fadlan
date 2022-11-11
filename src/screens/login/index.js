@@ -43,8 +43,9 @@ const LoginScreen = ({ navigation }) => {
         />
       </Appbar.Header>
 
-      <View style={{ paddingHorizontal: 24, paddingTop: 32, }}>
+      <View style={{ paddingHorizontal: 24, paddingTop: 32 }}>
         <TextInput
+          style={{ marginTop: 6 }}
           mode="outlined"
           label="Email"
           value={email}
@@ -54,6 +55,7 @@ const LoginScreen = ({ navigation }) => {
           onChangeText={text => setEmail(text)}
         />
         <TextInput
+          style={{ marginTop: 6 }}
           mode="outlined"
           label="Password"
           value={password}
@@ -62,9 +64,11 @@ const LoginScreen = ({ navigation }) => {
         />
         {isLoading
           ? <ActivityIndicator
+            style={{ marginTop: 24 }}
             animating
           />
           : <Button
+            style={{ marginTop: 24 }}
             mode="contained-tonal"
             onPress={onLoginClick}
           >

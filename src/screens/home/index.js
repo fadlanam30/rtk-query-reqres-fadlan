@@ -1,12 +1,18 @@
-import { View, Alert } from 'react-native'
+import { View, Alert, FlatList, Text } from 'react-native'
 import React, { useCallback, useEffect } from 'react'
 import { Appbar, useTheme } from 'react-native-paper'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutAction } from '../../redux/actions/AuthAction'
+import { useGetListUsersQuery } from '../../services/userApi'
+import ItemUser from '../../components/ItemUser'
 
 const HomeScreen = ({ navigation }) => {
 
   const theme = useTheme()
+  const listUser = useGetListUsersQuery().data?.data || []
+  console.log('data',  useGetListUsersQuery().data)
+  
+  // const listUser = useSelector((state) => state.user.users)
 
   const dispatch = useDispatch()
 
@@ -51,6 +57,21 @@ const HomeScreen = ({ navigation }) => {
           onPress={showAlert}
         />
       </Appbar.Header>
+      <FlatList
+        data={listUser || []}
+        keyExtractor={(item) => item.id}
+        ListEmptyComponent={() => (
+          <View style={{ flex: 1, padding: 32, alignItems: 'center' }}>
+            <Text>Data is Empty</Text>
+          </View>
+        )}
+        renderItem={({ item }) => (
+          <ItemUser
+            user={item}
+          />
+        )}
+      />
+
     </View>
   )
 }

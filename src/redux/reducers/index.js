@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "@reduxjs/toolkit";
 import { baseApi } from "../../services/baseApi";
 import AuthReducer from "./AuthReducer";
 
